@@ -29,7 +29,7 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
         
         // Do any additional setup after loading the view.
         
-        globalNetwork = FFNN(inputs: 321, hidden: 100, outputs: recognizableCharacters.characters.count, learningRate: 0.7, momentum: 0.4, weights: nil, activationFunction: .Sigmoid, errorFunction: .crossEntropy(average: false))
+        globalNetwork = FFNN(inputs: 321, hidden: 100, outputs: recognizableCharacters.count, learningRate: 0.7, momentum: 0.4, weights: nil, activationFunction: .Sigmoid, errorFunction: .crossEntropy(average: false))
         
         allFontNames = NSFontManager.shared.availableFonts
         
@@ -81,14 +81,14 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
 
         recognizableCharacters = ""
         
-        charactersToTrainTextField.stringValue.characters.forEach({
-            guard !recognizableCharacters.characters.contains($0) else {return}
+        charactersToTrainTextField.stringValue.forEach({
+            guard !recognizableCharacters.contains($0) else {return}
             recognizableCharacters.append($0)
         })
         
         charactersToTrainTextField.stringValue = recognizableCharacters
         
-        globalNetwork = FFNN(inputs: 321, hidden: 100, outputs: recognizableCharacters.characters.count, learningRate: 0.7, momentum: 0.4, weights: nil, activationFunction: .Sigmoid, errorFunction: .crossEntropy(average: false))
+        globalNetwork = FFNN(inputs: 321, hidden: 100, outputs: recognizableCharacters.count, learningRate: 0.7, momentum: 0.4, weights: nil, activationFunction: .Sigmoid, errorFunction: .crossEntropy(average: false))
     }
     
     @objc @IBAction func saveButtonPressed(_ sender: NSButton) {
@@ -112,7 +112,7 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
             
             trainingProgressIndicator.startAnimation(nil)
             
-            DispatchQueue.global(priority: .high).async {
+            DispatchQueue.global(qos: .userInitiated).async {
                 
                 var callbackCount      = 0
                 var minimumError:Float = Float.infinity {
@@ -167,7 +167,7 @@ class ViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSour
         startTrainingButton.title = "Start Training"
         isTraining = false
 
-        DispatchQueue.global(priority: .default).async {
+        DispatchQueue.global(qos: .default).async {
             self.trainingInstance.testOCR() {accuracy in
                 DispatchQueue.main.async {
                     self.accuracyLabel.stringValue = "Accuracy: \(round(accuracy * 1000) / 10)%"

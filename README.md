@@ -54,6 +54,21 @@ swiftOCRInstance.recognize(myImage) { recognizedString in
 
 To improve your experience with SwiftOCR you should set your Build Configuration to `Release`.
 
+#### Building Source
+
+Tested in XCode 9.2
+
+## Main project
+
+1. Open framework/SwiftOCR.xcodeproj in XCode
+1. Select Scheme SwiftOCR and build/run or Menu -> Product -> Test
+1. Select Scheme SwiftOCR Mac and build/run or Menu -> Product -> Test
+
+## Example projects
+
+1. Under example, open each xcodeproj in XCode
+1. Open framework/SwiftOCR.xcodeproj in XCode and build/run or Menu -> Product -> Test
+
 #### Training
 
 Training SwiftOCR is pretty easy. There are only a few steps you have to do, before it can recognize a new font.
