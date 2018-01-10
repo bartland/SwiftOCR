@@ -37,6 +37,21 @@ I did some testing on over 50 difficult images containing alphanumeric codes. Th
 
 First, SwiftOCR binarizes the input image. Afterwards it extracts the characters of the image using a technique called [Connected-component labeling](https://en.wikipedia.org/wiki/Connected-component_labeling). Finally the seperated characters get converted into numbers which then get feed into the neural network.
 
+## Building Source
+
+Tested in XCode 9.2
+
+#### Main project
+
+1. Open framework/SwiftOCR.xcodeproj in XCode
+1. Select Scheme SwiftOCR and build/run or Menu -> Product -> Test
+1. Select Scheme SwiftOCR Mac and build/run or Menu -> Product -> Test
+
+#### Example projects
+
+1. Under example, open each xcodeproj in XCode
+1. Open framework/SwiftOCR.xcodeproj in XCode and build/run or Menu -> Product -> Test
+
 ## How to use it?
 
 If you ever used Tesseract you know how exhausting it can be to implement OCR into your project. 
@@ -53,21 +68,6 @@ swiftOCRInstance.recognize(myImage) { recognizedString in
 ```
 
 To improve your experience with SwiftOCR you should set your Build Configuration to `Release`.
-
-#### Building Source
-
-Tested in XCode 9.2
-
-## Main project
-
-1. Open framework/SwiftOCR.xcodeproj in XCode
-1. Select Scheme SwiftOCR and build/run or Menu -> Product -> Test
-1. Select Scheme SwiftOCR Mac and build/run or Menu -> Product -> Test
-
-## Example projects
-
-1. Under example, open each xcodeproj in XCode
-1. Open framework/SwiftOCR.xcodeproj in XCode and build/run or Menu -> Product -> Test
 
 #### Training
 
